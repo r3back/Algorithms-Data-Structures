@@ -1,33 +1,69 @@
-package me.reb4ck.algorithms.arraylist;
+package me.reb4ck.algorithms.list.arraylist;
+
+import me.reb4ck.algorithms.list.TheList;
 
 @SuppressWarnings("unchecked")
-public final class TheArrayList<T> {
+public final class TheArrayList<T> implements TheList<T> {
     private T[] objects;
 
     public TheArrayList() {
         this.objects = (T[]) new Object[]{};
     }
 
+    @Override
     public void add(final T object) {
         this.objects = refactorList(object);
     }
 
-
+    @Override
     public void remove(final T object) {
         int index = getIndex(object);
 
         this.objects = refactorList(index);
     }
 
+    @Override
+    public void add(final int index, final T object) {
+        if (index >= size()) {
+            throw new RuntimeException("Index exceeds list capacity!");
+        }
+
+        this.objects[index] = object;
+    }
+
+    @Override
+    public void remove(final int index) {
+        if (index >= size()) {
+            throw new RuntimeException("Index exceeds list capacity!");
+        }
+
+        this.objects = refactorList(index);
+    }
+
+    @Override
+    public T get(int index) {
+        if (index >= size()) {
+            throw new RuntimeException("Index exceeds list capacity!");
+        }
+
+        return this.objects[index];
+    }
+
+    @Override
     public boolean contains(final T object) {
         return getIndex(object) != -1;
     }
 
-
+    @Override
     public void showValues() {
         for(int i = 0; i < size(); i++) {
-            System.out.println("Object: " + objects[0] + " | Index: " + i);
+            System.out.println("Object: " + objects[i] + " | Index: " + i);
         }
+    }
+
+    @Override
+    public int size() {
+        return objects.length;
     }
 
     private T[] refactorList(final T object, int indexToRemove) {
@@ -35,8 +71,8 @@ public final class TheArrayList<T> {
 
         for(int i = 0; i < newList.length; i++) {
 
-            if(indexToRemove == -1) {
-                if(size() <= i) {
+            if (indexToRemove == -1) {
+                if (size() <= i) {
                     newList[i] = object;
                 } else {
                     final T objectIterated = this.objects[i];
@@ -86,7 +122,4 @@ public final class TheArrayList<T> {
         return -1;
     }
 
-    public int size() {
-        return objects.length;
-    }
 }
