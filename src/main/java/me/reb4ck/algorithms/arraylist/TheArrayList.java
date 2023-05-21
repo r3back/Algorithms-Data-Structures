@@ -1,60 +1,57 @@
-package me.reb4ck.algoritmos.list;
+package me.reb4ck.algorithms.arraylist;
 
-public final class MyArrayList <T> {
+@SuppressWarnings("unchecked")
+public final class TheArrayList<T> {
     private T[] objects;
 
-    public MyArrayList() {
+    public TheArrayList() {
         this.objects = (T[]) new Object[]{};
     }
 
-    public void add(T object) {
+    public void add(final T object) {
         this.objects = refactorList(object);
     }
 
 
-    public void remove(T object) {
+    public void remove(final T object) {
         int index = getIndex(object);
 
         this.objects = refactorList(index);
     }
 
-    public boolean contains(T object) {
+    public boolean contains(final T object) {
         return getIndex(object) != -1;
     }
 
 
     public void showValues() {
-        int i = 0;
-        for (T object : this.objects) {
-            System.out.println("Object: " + object + " | Index: " + i);
-            i++;
+        for(int i = 0; i < size(); i++) {
+            System.out.println("Object: " + objects[0] + " | Index: " + i);
         }
     }
 
-    private T[] refactorList(T object, int indexToRemove) {
-        T[] newList = createNewArray(indexToRemove);
+    private T[] refactorList(final T object, int indexToRemove) {
+        final T[] newList = createNewArray(indexToRemove);
 
         for(int i = 0; i < newList.length; i++) {
-            System.out.println(i);
 
             if(indexToRemove == -1) {
                 if(size() <= i) {
                     newList[i] = object;
                 } else {
-                    T objectIterated = this.objects[i];
+                    final T objectIterated = this.objects[i];
                     newList[i] = objectIterated;
                 }
             } else {
 
-                T objectIterated;
+                final T objectIterated;
 
                 if (i < indexToRemove) {
                     objectIterated = this.objects[i];
-
                 } else {
                     objectIterated = this.objects[i + 1];
-
                 }
+
                 newList[i] = objectIterated;
             }
 
@@ -63,7 +60,7 @@ public final class MyArrayList <T> {
         return newList;
     }
 
-    private T[] refactorList(int indexToRemove) {
+    private T[] refactorList(final int indexToRemove) {
         return refactorList(null, indexToRemove);
     }
 
@@ -71,7 +68,7 @@ public final class MyArrayList <T> {
         return refactorList(object, -1);
     }
 
-    private T[] createNewArray(int indexToRemove) {
+    private T[] createNewArray(final int indexToRemove) {
         if (indexToRemove == -1) {
             return (T[]) new Object[size() + 1];
         } else {
@@ -80,7 +77,7 @@ public final class MyArrayList <T> {
 
     }
 
-    private int getIndex(T object) {
+    private int getIndex(final T object) {
         for(int i = 0; i < objects.length; i++) {
             if (objects[i].equals(object)) {
                 return i;
