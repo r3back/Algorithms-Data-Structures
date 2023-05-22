@@ -1,6 +1,7 @@
 package me.reb4ck.algorithms.list;
 
 import me.reb4ck.algorithms.list.arraylist.TheArrayList;
+import me.reb4ck.algorithms.list.linkedlist.TheLinkedList;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Array List tests
  */
 @ExtendWith(MockitoExtension.class)
-public class ArrayListTest {
+public class LinkedListTest {
     private static final String FIRST_ELEMENT_TO_ADD = "1st String Element";
     private static final String SECOND_ELEMENT_TO_ADD = "2nd String Element";
     private static final String THIRD_ELEMENT_TO_ADD = "3rd String Element";
@@ -22,12 +23,13 @@ public class ArrayListTest {
      */
     @Test
     public void testWhenAddMultipleElementsToArrayList() {
-        final TheList<Integer> list = new TheArrayList<>();
+        final TheList<String> list = new TheLinkedList<>();
 
         for (int i = 0; i < ELEMENTS_TO_ADD_AMOUNT; i++) {
-            list.add(i);
+            list.add("Value: " + i);
         }
 
+        list.showValues();
         assertEquals(list.size(), ELEMENTS_TO_ADD_AMOUNT);
     }
 
@@ -110,7 +112,7 @@ public class ArrayListTest {
 
         list.add(1, FIRST_ELEMENT_TO_ADD);
 
-        assertEquals(list.size(), 4);
+        assertEquals(list.size(), 3);
         assertEquals(list.get(1), FIRST_ELEMENT_TO_ADD);
     }
 }
