@@ -1,5 +1,7 @@
 package me.reb4ck.algorithms.tree;
 
+import java.util.Optional;
+
 /**
  * Tree Data Structure interface
  *
@@ -18,7 +20,27 @@ public interface TheTree<T extends Number> {
      * Search a node
      *
      * @param value Value to be searched
-     * @return Found value or null
+     * @return Optional of {@link TheTree<T>}
      */
-    public TheTree<T> search(final T value);
+    public Optional<TheTree<T>> search(final T value);
+
+    /**
+     * Returns Left Child
+     * @return {@link TheTree<T>}
+     */
+    public TheTree<T> getLeftChild();
+
+    /**
+     * Returns right child
+     *
+     * @return {@link TheTree<T>}
+     */
+    public TheTree<T> getRightChild();
+
+    /**
+     * Returns node data
+     *
+     * @return Node data
+     */
+    public T getData();
 }
