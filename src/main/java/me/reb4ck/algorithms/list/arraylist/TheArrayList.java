@@ -1,7 +1,8 @@
 package me.reb4ck.algorithms.list.arraylist;
 
 import me.reb4ck.algorithms.list.TheList;
-import me.reb4ck.algorithms.list.exception.ListIndexException;
+import me.reb4ck.algorithms.list.exception.CommonDataStructureException;
+import me.reb4ck.algorithms.list.exception.list.ListIndexException;
 
 @SuppressWarnings("unchecked")
 public final class TheArrayList<T> implements TheList<T> {

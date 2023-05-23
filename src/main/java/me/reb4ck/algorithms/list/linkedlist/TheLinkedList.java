@@ -1,7 +1,8 @@
 package me.reb4ck.algorithms.list.linkedlist;
 
 import me.reb4ck.algorithms.list.TheList;
-import me.reb4ck.algorithms.list.exception.ListIndexException;
+import me.reb4ck.algorithms.list.exception.CommonDataStructureException;
+import me.reb4ck.algorithms.list.exception.list.ListIndexException;
 
 public final class TheLinkedList <T> implements TheList<T> {
     private ListNode<T> head = null;
